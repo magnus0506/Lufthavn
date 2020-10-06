@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create new Arrival or Departure</title>
+</head>
+<body>
+<div align="center">
+    <h1>Create new Arrival or Departure</h1><br/>
+    <form action="#" th:action="@{/save}" th:object="${arrdep}" method="post">
+        <table border="0" cellpadding="10">
+            <tr>
+                <td><input type="text" th:field="*{route}"/>Route:</td>
+                <td><input type="text" th:field="*{date}"/>Date</td>
+                <td><input type="text" th:field="*{arrordep}"/>Arrival/Departure</td>
+                <td><input type="text" th:field="*{route}"/>Route</td>
+                <td><input type="text" th:field="*{estimated}"/>Estimated arrival/departure time</td>
+                <td><input type="text" th:field="*{aircraft}"/>Aircraft</td>
+                <td><input type="text" th:field="*{destination}"/>Destination</td>
+                <td><input type="text" th:field="*{expectedtime}"/>Expected time</td>
+            </tr>
+            <tr>
+                <td colspan="2"><button type="submit">Save</button> </td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>
