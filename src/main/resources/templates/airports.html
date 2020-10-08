@@ -20,7 +20,7 @@
         </tr>
         </thead>
         <tbody style="text-align: center">
-        <tr th:each="airport : ${listAirport}">
+        <tr th:each="airport : ${listAirports}">
             <td th:width="15"   th:text="${airport.id}">ID</td>
             <td th:width="130"  th:text="${airport.cityAirport}">Date</td>
             <td th:width="15"   th:text="${airport.country}">Arrival/Departure</td>
@@ -28,6 +28,19 @@
         </tr>
         </tbody>
     </table>
+    <div>
+        Total arrivals and departures: [[${totalArrDeps}]] - Page [[${currentPage}]] of [[${totalPages}]]
+
+        <a th:if="${currentPage > 1}" th:href="@{/page/1}">First page</a>
+        <a th:unless="${currentPage > 1}">First page</a>
+
+        <a th:if="${currentPage > 2}">Previous page</a>
+
+        <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+                <a th:if="${i != currentPage}" th:href="@{'/page/' + ${i}}" >[[${i}]]</a> &nbsp;
+                <span th:unless="${i != currentPage}">[[${i}]]</span>
+                    </span>
+    </div>
 </div>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>

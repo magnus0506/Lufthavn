@@ -35,10 +35,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/arrdeplist").hasAnyAuthority("ROLE_ADMIN","ROLE_FLYVELEDER")
-                .antMatchers("/airports").hasAnyAuthority("ROLE_ADMIN")
-                .and()
-                .formLogin();
+                .antMatchers("/arrdeplist").permitAll()//hasAnyAuthority("ROLE_ADMIN","ROLE_FLYVELEDER")
+                .antMatchers("/airports").permitAll()//hasAnyAuthority("ROLE_ADMIN")
+                .antMatchers("/standpladslist").permitAll();//hasAnyAuthority("ROLE_ADMIN", "ROLE_FLYVELEDER")
+//                .and()
+//                .formLogin();
         http.csrf().disable();
     }
     @Bean

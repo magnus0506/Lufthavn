@@ -3,6 +3,9 @@ package com.example.lufthavn.service;
 import com.example.lufthavn.model.ArrDep;
 import com.example.lufthavn.repository.ArrDepRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -13,8 +16,9 @@ public class ArrDepService {
     @Autowired
     private ArrDepRepository repository;
 
-    public Iterable<ArrDep> listAll() {
-        return repository.findAll();
+    public Page<ArrDep> listAll(int pageNumber) {
+        Pageable pageable = PageRequest.of(pageNumber - 1, 40);
+        return repository.findAll(pageable);
     }
 
     public void save(ArrDep arrDep){
