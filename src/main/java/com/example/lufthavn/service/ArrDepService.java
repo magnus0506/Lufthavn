@@ -5,14 +5,15 @@ import com.example.lufthavn.repository.ArrDepRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ArrDepService {
+
     @Autowired
     private ArrDepRepository repository;
 
-    public List<ArrDep> listAll() {
+    public Iterable<ArrDep> listAll() {
         return repository.findAll();
     }
 
@@ -20,8 +21,13 @@ public class ArrDepService {
         repository.save(arrDep);
     }
 
-    public ArrDep get(Long id){
-        return repository.findById(id).get();
+    public ArrDep findById(Long id) {
+        Optional<ArrDep> arrDepOptional = repository.findById(id);
+        if (arrDepOptional.isEmpty())
+        {
+            throw new RuntimeException("");
+        }
+        return arrDepOptional.get();
     }
 
     public void delete(Long id) {

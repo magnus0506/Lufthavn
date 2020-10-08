@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-
-import java.util.List;
+import java.util.Map;
 
 @Controller
 public class ArrDepController {
@@ -16,41 +14,28 @@ public class ArrDepController {
     @Autowired
     private ArrDepService service;
 
-    @RequestMapping("/")
-    public String viewArrDepPage(Model model){
-        List<ArrDep> listArrDep = service.listAll();
+    @GetMapping("/arrdeplist")
+    public String viewArrDepPage(Model model) {
+        Iterable<ArrDep> listArrDep = service.listAll();
         model.addAttribute("listArrDep", listArrDep);
-        return "index";
+        return "arrdeplist";
     }
 
-    @RequestMapping("/new")
-    public String showNewArrDepForm(Model model){
-        ArrDep arrDep = new ArrDep();
-        model.addAttribute("arrdep", arrDep);
-
+    @GetMapping("/new")
+    public String showNewArrDepForm(Map<String, Object> model) {
+        model.put("arrdep", new ArrDep());
         return "new_arrdep";
     }
 
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String SaveArrDep(@ModelAttribute("arrdep") ArrDep arrDep){
+    @PostMapping("/save")
+    public String saveArrDep(@ModelAttribute ("arrdep") ArrDep arrDep) {
         service.save(arrDep);
-        return "redirect:/";
+        return "redirect:/arrdeplist";
     }
 
-//    @RequestMapping("/edit/{id}")
-//    public ModelAndView ShowEditArrDepForm(@PathVariable(name = "id") Long id){
-//        ModelAndView mav = new ModelAndView("edit_arrdep");
-//
-//        ArrDep arrDep = service.get(id);
-//        ("arrdep", arrDep);
-//        return mav;
-//    }
-
-    // Den her metode opretter en ny entity i stedet for at update den valgte
     @GetMapping("/edit/{id}")
-    public String showFormForUpdate(@PathVariable (value = "id") Long id, Model model){
-        ArrDep arrDep = service.get(id);
-        model.addAttribute("arrdep", arrDep);
-        return "update_arrdep";
+    public String showFormForUpdate(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("arrdep",service.findById(id));
+        return "edit_arrdep";
     }
 }

@@ -7,7 +7,11 @@ import javax.persistence.Id;
 
 @Entity
 public class ArrDep {
+
+    @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String date;
     private String arrordep;
     private String route;
@@ -19,8 +23,7 @@ public class ArrDep {
     public ArrDep() {
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     public Long getId() {
         return id;
     }

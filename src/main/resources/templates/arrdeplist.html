@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" xmlns:sec="http://www.w3.org/1999/xhtml"
+      lang="en">
+<head>
+    <meta charset="ISO-8859-1" http-equiv="refresh" content="30">
+    <title>Arrivals and Departures</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Arrivals and Departures</h1>
+        <a href="/new">Create new route</a>
+        <table class="table table-striped table-bordered table-hover">
+            <thead class="thead-light" style="text-align: center">
+            <tr>
+                <th scope="col" th:width="15">ID</th>
+                <th scope="col" >Date</th>
+                <th scope="col" >Arrival Departure</th>
+                <th scope="col">Route</th>
+                <th scope="col">Estimated arrival/departure</th>
+                <th scope="col">Aircraft model</th>
+                <th scope="col">Destination</th>
+                <th scope="col">Expected time</th>
+            </tr>
+            </thead>
+            <tbody style="text-align: center">
+            <tr th:each="arrdep : ${listArrDep}">
+                <td th:width="15"   th:text="${arrdep.id}">ID</td>
+                <td th:width="130"  th:text="${arrdep.date}">Date</td>
+                <td th:width="15"   th:text="${arrdep.arrordep}">Arrival/Departure</td>
+                <td th:width="30"   th:text="${arrdep.route}">Route</td>
+                <td th:width="130 " th:text="${arrdep.estimated}">Estimated time of arrival/departure</td>
+                <td th:width="40"   th:text="${arrdep.aircraft}">Aircraft model</td>
+                <td th:width="20"   th:text="${arrdep.destination}">Destination</td>
+                <td th:width="40"   th:text="${arrdep.expectedtime}">Expected time</td>
+                    <div sec:authorize="hasRole('ROLE_FLYVELEDER')">
+                        <td th:width="20">
+                        <a th:href="@{'/edit/' + ${arrdep.id}}">Edit</a>
+                        </td>
+                    </div>
+                <div sec:authorize="hasRole('ROLE_ADMIN')">
+                    <td th:width="20">
+                        <a th:href="@{'/edit/' + ${arrdep.id}}">Edit</a>
+                        <a th:href="@{'/delete/' + ${arrdep.id}}">Delete</a>
+                    </td>
+                </div>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
