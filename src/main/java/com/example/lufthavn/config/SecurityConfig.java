@@ -17,8 +17,6 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-
-
     public DataSource dataSource(){
             return DataSourceBuilder
                     .create()
@@ -27,7 +25,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .password("mag22422606")
                     .build();
     }
-
     @Autowired
     public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication().dataSource(dataSource());
@@ -35,12 +32,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/arrdeplist").permitAll()//hasAnyAuthority("ROLE_ADMIN","ROLE_FLYVELEDER")
-                .antMatchers("/airports").permitAll()//hasAnyAuthority("ROLE_ADMIN")
-                .antMatchers("/standpladslist").permitAll();//hasAnyAuthority("ROLE_ADMIN", "ROLE_FLYVELEDER")
-//                .and()
-//                .formLogin();
+                .antMatchers("/arrdeplist").hasAnyAuthority("ROLE_ADMIN","ROLE_FLYVELEDER")
+                .antMatchers("/airports").hasAnyAuthority("ROLE_ADMIN")
+                .antMatchers("/standpladslist").hasAnyAuthority("ROLE_ADMIN", "ROLE_FLYVELEDER")
+                .antMatchers("/statuslistmedium").hasAnyAuthority("ROLE_ADMIN", "ROLE_FLYVELEDER", "ROLE_EMPLOYEE")
+                .and()
+                .formLogin();
         http.csrf().disable();
+
     }
     @Bean
     public PasswordEncoder passwordEncoder() {

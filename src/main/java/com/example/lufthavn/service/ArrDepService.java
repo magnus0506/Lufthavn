@@ -17,7 +17,8 @@ public class ArrDepService {
     private ArrDepRepository repository;
 
     public Page<ArrDep> listAll(int pageNumber) {
-        Pageable pageable = PageRequest.of(pageNumber - 1, 40);
+        Pageable pageable = PageRequest.of(pageNumber - 1, 100);
+
         return repository.findAll(pageable);
     }
 

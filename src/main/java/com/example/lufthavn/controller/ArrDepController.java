@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @Controller
 public class ArrDepController {
@@ -35,22 +34,22 @@ public class ArrDepController {
         model.addAttribute("listArrDep", listArrDep);
         return "arrdeplist";
     }
-    @GetMapping("/newarrdep")
+    @GetMapping("/arrdepnew")
     public String showNewArrDepForm(Map<String, Object> model) {
         model.put("arrdep", new ArrDep());
-        return "newarrdep";
+        return "arrdepnew";
     }
 
-    @PostMapping("/savearrdep")
+    @PostMapping("/arrdepsave")
     public String saveArrDep(@ModelAttribute ("arrdep") ArrDep arrDep) {
         service.save(arrDep);
         return "redirect:/arrdeplist";
     }
 
-    @GetMapping("/editarrdep/{id}")
+    @GetMapping("/arrdepedit/{id}")
     public String showFormForUpdate(@PathVariable("id") Long id, Model model) {
         model.addAttribute("arrdep",service.findById(id));
-        return "editarrdep";
+        return "arrdepedit";
     }
 
 }

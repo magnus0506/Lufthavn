@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
-      lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="ISO-8859-1" http-equiv="refresh" content="30">
-    <title>Standpladser</title>
+    <meta charset="ISO-8859-1">
+    <title>Edit Arrival or Departure</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
@@ -35,34 +34,49 @@
         </ul>
     </div>
 </nav>
-<div class="container">
-    <h1>Standpladser</h1>
-        <br>
-    <div>
-    <a href="/standpladssearch" class="btn btn-primary">Søg efter ledig standplads</a>
-    </div>
-    <br>
+<div th:align="center" class="mx-auto" style="width: 200px;">
+    <h3>Edit arrival or departure</h3>
 
-    <table class="table table-striped table-bordered table-hover">
-        <thead class="thead-light" style="text-align: center">
-        <tr>
-            <th scope="col" >ID</th>
-            <th scope="col" >Standplads nr</th>
-            <th scope="col" >Status</th>
-            <th scope="col">Fly Størrelse</th>
-            <th scope="col">Parkeret fly</th>
-        </tr>
-        </thead>
-        <tbody style="text-align: center">
-        <tr th:each="standplads : ${standpladslist}">
-            <td th:width="15" th:text="${standplads.id}"></td>
-            <td th:width="20" th:text="${standplads.standpladsnr}"></td>
-            <td th:width="15" th:text="${standplads.status}"></td>
-            <td th:width="30" th:text="${standplads.size}"></td>
-            <td th:width="30" th:text="${standplads.parkedplane}"></td>
-        </tr>
-        </tbody>
-    </table>
+            <form action="/arrdepsave" method="post">
+                <label>ID
+                    <input type="text" th:field="*{arrdep.id}"/>
+                </label><br>
+
+                <label>Arrival or departure date
+                    <input type="text" th:field="*{arrdep.date}"/>
+                </label>
+                <br>
+
+
+                <label>Arrival / departure
+                    <input type="text" th:field="*{arrdep.arrordep}"/>
+                </label>
+                <br>
+
+                <label>Route
+                    <input type="text" th:field="*{arrdep.route}"/>
+                </label>
+                <br>
+
+                <label>Estimated time
+                    <input type="text" th:field="*{arrdep.estimated}"/>
+                </label>
+                <br>
+
+                <label>Aircraft model
+                    <input type="text" th:field="*{arrdep.aircraft}"/>
+                </label><br>
+
+                <label>Destination
+                    <input type="text" th:field="*{arrdep.destination}">
+                </label><br>
+
+                <label>Expected time
+                    <input type="text" th:field="*{arrdep.expectedtime}">
+                </label>
+
+                <button type="submit" name="button" class="btn btn-primary">Update</button>
+            </form>
 </div>
 </body>
 </html>

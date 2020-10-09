@@ -11,11 +11,10 @@ public class Standplads {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String standpladsnr;
-    private String plane;
+    private String status;
     private String size;
-
+    private String parkedplane;
     public Standplads() {
     }
 
@@ -27,6 +26,14 @@ public class Standplads {
         this.id = id;
     }
 
+    public String getParkedplane() {
+        return parkedplane;
+    }
+
+    public void setParkedplane(String parkedplane) {
+        this.parkedplane = parkedplane;
+    }
+
     public String getStandpladsnr() {
         return standpladsnr;
     }
@@ -35,12 +42,12 @@ public class Standplads {
         this.standpladsnr = standpladsnr;
     }
 
-    public String getPlane() {
-        return plane;
+    public String getStatus() {
+        return status;
     }
 
-    public void setPlane(String plane) {
-        this.plane = plane;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getSize() {
@@ -50,4 +57,6 @@ public class Standplads {
     public void setSize(String size) {
         this.size = size;
     }
+
+
 }

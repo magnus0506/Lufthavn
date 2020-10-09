@@ -18,7 +18,7 @@ public class AirportService {
 
     public Page<Airport> listAll(int pageNumber) {
 
-        Pageable pageable = PageRequest.of(pageNumber - 1, 40);
+        Pageable pageable = PageRequest.of(pageNumber - 1, 100);
                 return repository.findAll(pageable);
     }
 
@@ -38,4 +38,5 @@ public class AirportService {
     public void delete(Long id) {
         repository.deleteById(id);
     }
+
 }

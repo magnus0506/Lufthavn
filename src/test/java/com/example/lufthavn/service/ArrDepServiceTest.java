@@ -22,7 +22,6 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-
 class ArrDepServiceTest {
 
     @InjectMocks
@@ -32,7 +31,7 @@ class ArrDepServiceTest {
     ArrDepRepository mockedArrDepRepository;
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         ArrDep arrDep = new ArrDep();
         MockitoAnnotations.initMocks(this);
     }
@@ -44,7 +43,7 @@ class ArrDepServiceTest {
         arrDep.setId(1L);
         Mockito.when(mockedArrDepRepository.save(arrDep)).thenReturn(arrDep);
         arrDepService.save(arrDep);
-        assertEquals(1,arrDep.getId());
+        assertEquals(1, arrDep.getId());
         Mockito.verify(mockedArrDepRepository).save(arrDep);
     }
 
@@ -54,16 +53,39 @@ class ArrDepServiceTest {
         arrDep.setId(1L);
         Mockito.when(mockedArrDepRepository.save(arrDep)).thenReturn(arrDep);
         arrDepService.save(arrDep);
-        assertNotEquals(5,arrDep.getId());
+        assertNotEquals(5, arrDep.getId());
         Mockito.verify(mockedArrDepRepository).save(arrDep);
     }
+
+//    @Test
+//    //void get() {
+//        long ID = 2L;
+//        ArrDep arrDep = new ArrDep();
+//        arrDep.setId(ID);
+//        Mockito.when(arrDepService.findById(ID)).thenReturn(arrDep);
+//        assertEquals(2, arrDep.getId());
+//        Mockito.verify(mockedArrDepRepository).findById(ID);
+//    }
+
     @Test
     void get() {
+
         long ID = 2L;
         ArrDep arrDep = new ArrDep();
         arrDep.setId(ID);
-        Mockito.when(arrDepService.findById(ID)).thenReturn(arrDep);
-        assertEquals(2, arrDep.getId());
+        Mockito.when(mockedArrDepRepository.findById(ID)).thenReturn(Optional.of(arrDep));
+
+// kald service og hent Optional<ArrDep>
+
+        Optional<ArrDep> arrDepOptional = Optional.ofNullable(arrDepService.findById(ID));
+
+        if(arrDepOptional.isEmpty()) {
+            fail();
+        }
+// få id ud af Optional<ArrDep>
+        Long res = arrDepOptional.get().getId();
+// sammenlign id med forventet id
+        assertEquals(ID, res);
         Mockito.verify(mockedArrDepRepository).findById(ID);
     }
 }

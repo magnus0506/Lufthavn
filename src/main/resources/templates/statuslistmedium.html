@@ -2,8 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
       lang="en">
 <head>
-    <meta charset="ISO-8859-1" http-equiv="refresh" content="30">
-    <title>Standpladser</title>
+    <meta charset="UTF-8" http-equiv="refresh" content="30">
+    <title>Fly status</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
@@ -36,30 +36,33 @@
     </div>
 </nav>
 <div class="container">
-    <h1>Standpladser</h1>
-        <br>
-    <div>
-    <a href="/standpladssearch" class="btn btn-primary">Søg efter ledig standplads</a>
-    </div>
+    <h1>Fly status</h1>
     <br>
-
     <table class="table table-striped table-bordered table-hover">
         <thead class="thead-light" style="text-align: center">
         <tr>
-            <th scope="col" >ID</th>
-            <th scope="col" >Standplads nr</th>
-            <th scope="col" >Status</th>
-            <th scope="col">Fly Størrelse</th>
-            <th scope="col">Parkeret fly</th>
+            <th scope="col" >Rute</th>
+            <th scope="col" >Taxi til gate</th>
+            <th scope="col" >Passagerer ud</th>
+            <th scope="col">Baggage ud</th>
+            <th scope="col">Optankning</th>
+            <th scope="col">Rengøring</th>
+            <th scope="col">Baggage ind</th>
+            <th scope="col">Passagerer ind</th>
+            <th scope="col">Taxi til afgang</th>
         </tr>
         </thead>
         <tbody style="text-align: center">
-        <tr th:each="standplads : ${standpladslist}">
-            <td th:width="15" th:text="${standplads.id}"></td>
-            <td th:width="20" th:text="${standplads.standpladsnr}"></td>
-            <td th:width="15" th:text="${standplads.status}"></td>
-            <td th:width="30" th:text="${standplads.size}"></td>
-            <td th:width="30" th:text="${standplads.parkedplane}"></td>
+        <tr th:each="mediumsize : ${mediumsizelist}">
+            <td th:text="${mediumsize.id}"></td>
+            <td th:text="${mediumsize.taxiFromArr}"></td>
+            <td th:text="${mediumsize.passengersOut}"></td>
+            <td th:text="${mediumsize.baggageOut}"></td>
+            <td th:text="${mediumsize.fuelRefill}"></td>
+            <td th:text="${mediumsize.cleaning}"></td>
+            <td th:text="${mediumsize.baggageIn}"></td>
+            <td th:text="${mediumsize.passengersIn}"></td>
+            <td th:text="${mediumsize.taxiToDep}"></td>
         </tr>
         </tbody>
     </table>

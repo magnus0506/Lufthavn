@@ -8,7 +8,11 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.List;
 
-public interface StandspladsRepository extends CrudRepository<Standplads, Long> {
-    @Query ("select s from Standplads s where s.standpladsnr like %?1%")
+public interface StandpladsRepository extends CrudRepository<Standplads, Long> {
+    @Query ("select s from Standplads s")
     List<Standplads> findAll(String keyword);
+
+    @Query("select s from Standplads s where s.status = 'Fri'")
+    List<Standplads> find(String keyword);
+
 }
