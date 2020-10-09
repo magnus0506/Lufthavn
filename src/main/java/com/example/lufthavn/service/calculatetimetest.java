@@ -3,7 +3,7 @@ package com.example.lufthavn.service;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class calculateStandard {
+public class calculatetimetest {
     static final int taxiFromArr = 10;
     static final int passengersOut=20;
     static final int baggageOut=35;
