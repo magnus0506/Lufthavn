@@ -1,14 +1,13 @@
 package com.example.lufthavn.controller;
 
 import com.example.lufthavn.model.Airport;
-import com.example.lufthavn.model.ArrDep;
 import com.example.lufthavn.service.AirportService;
+import com.example.lufthavn.service.dateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -32,6 +31,15 @@ public class AirportController {
         model.addAttribute("totalPages", totalPages);
         model.addAttribute("listAirports", listAirports);
         return "airports";
+    }
+
+    @GetMapping("/calc")
+    @ResponseBody
+    public String date(@RequestParam int year, int month, int day){
+
+        dateService dateService = new dateService();
+
+        return "" + dateService.calcDate(year,month,day);
     }
 
 }

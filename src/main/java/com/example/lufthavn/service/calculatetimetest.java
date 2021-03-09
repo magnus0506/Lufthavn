@@ -21,6 +21,10 @@ public class calculatetimetest {
         System.out.println(newTime);
     }
 
+    static int calc(int x, int y){
+     return x + y;
+    }
+
     public static void main(String[] args) {
 
         Calendar d = Calendar.getInstance();

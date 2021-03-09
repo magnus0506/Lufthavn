@@ -83,7 +83,7 @@
             <div>
             Total arrivals and departures: [[${totalArrDeps}]] - Page [[${currentPage}]] of [[${totalPages}]]
 
-            <a th:if="${currentPage > 1}" th:href="@{/'arrdeppage/1'}">First page</a>
+            <a th:if="${currentPage > 1}" th:href="@{/arrdeppage/1}">First page</a>
             <a th:unless="${currentPage > 1}">First page</a>
 
                 <a th:if="${currentPage > 2}">Previous page</a>
