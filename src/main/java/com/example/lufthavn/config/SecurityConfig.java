@@ -20,9 +20,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public DataSource dataSource(){
             return DataSourceBuilder
                     .create()
-                    .url("jdbc:mysql://localhost:3306/cph_airport?serverTimezone=UTC")
+                    .url("jdbc:mysql://54.147.162.179:3306/cph_airport?serverTimezone=UTC")
                     .username("root")
-                    .password("mag22422606")
+                    .password("22422606")
                     .build();
     }
     @Autowired
@@ -32,7 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-//                .antMatchers("/arrdeplist").hasAnyAuthority("ROLE_ADMIN","ROLE_FLYVELEDER")
+                .antMatchers("/arrdeplist").hasAnyAuthority("ROLE_ADMIN","ROLE_FLYVELEDER")
                 .antMatchers("/airports").hasAnyAuthority("ROLE_ADMIN")
                 .antMatchers("/standpladslist").hasAnyAuthority("ROLE_ADMIN", "ROLE_FLYVELEDER")
                 .antMatchers("/statuslistmedium").hasAnyAuthority("ROLE_ADMIN", "ROLE_FLYVELEDER", "ROLE_EMPLOYEE")
