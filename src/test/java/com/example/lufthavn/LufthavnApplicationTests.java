@@ -10,9 +10,4 @@ class LufthavnApplicationTests {
     void contextLoads() {
     }
 
-    @Test
-    void calcTest(int x, int y){
-
-    }
-
 }
