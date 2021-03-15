@@ -20,7 +20,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public DataSource dataSource(){
             return DataSourceBuilder
                     .create()
-                    .url("jdbc:mysql://3.88.108.71:3306/cph_airport?serverTimezone=UTC")
+                    .url("jdbc:mysql://54.234.57.19:3306/cph_airport?serverTimezone=UTC")
                     .username("root")
                     .password("22422606")
                     .build();

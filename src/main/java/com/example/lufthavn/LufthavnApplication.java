@@ -8,7 +8,7 @@ import java.sql.*;
 
 @SpringBootApplication
 public class LufthavnApplication {
-    private static final String DB_URL = "jdbc:mysql://3.88.108.71:3306";
+    private static final String DB_URL = "jdbc:mysql://54.234.57.19:3306";
     private static final String USER = "root";
     private static final String PASS = "22422606";
     private static Connection conn = null;
